@@ -8,6 +8,9 @@ public class Money {
 
     public boolean equals(Object object){
         Money money = (Money) object;
-        return this.amount == money.amount;
+        return (
+                this.amount == money.amount &&
+                this.getClass() == money.getClass()
+        );
     }
 }
