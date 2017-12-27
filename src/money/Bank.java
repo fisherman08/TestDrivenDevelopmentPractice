@@ -22,7 +22,7 @@ public class Bank {
         if(from.equals(to)) {
             return 1;
         }
-        
+
         return this.rates.get(new Pair(from, to));
     }
 }
