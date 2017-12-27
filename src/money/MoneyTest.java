@@ -90,4 +90,29 @@ class MoneyTest {
         assertEquals(Money.dollar(10), result);
 
     }
+
+    @Test
+    public void testSumPlusMoney(){
+        Expression fivebucks  = Money.dollar(5);
+        Expression tenfrancs = Money.franc(10);
+
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fivebucks, tenfrancs).plus(fivebucks);
+        Money result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(15), result);
+    }
+
+    @Test
+    public void testSumTimes(){
+        Expression fivebucks  = Money.dollar(5);
+        Expression tenfrancs = Money.franc(10);
+
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fivebucks, tenfrancs).times(2);
+        Money result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(20), result);
+    }
+
 }
